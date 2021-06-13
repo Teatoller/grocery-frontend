@@ -1,6 +1,10 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Link from "next/link";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+
+import products from "../products.json";
+import { imageToUrl } from "../utils/urls";
 
 export default function Home() {
   return (
@@ -11,6 +15,22 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {products.map((product) => (
+        <div key={product.name} className={styles.product}>
+          <Link href={`/products/${product.slug}`}>
+            <a>
+            <div className={styles.product__Row}>
+              <div className={styles.product__ColImg}>
+                <img src={imageToUrl(product.image)} alt="" />
+              </div>
+              <div className={styles.product__Col}>
+                {product.name} {product.price}
+              </div>
+            </div>
+            </a>
+          </Link>
+        </div>
+      ))}
     </div>
-  )
+  );
 }
