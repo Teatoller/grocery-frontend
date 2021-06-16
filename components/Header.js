@@ -35,7 +35,8 @@ export const Header = () => {
       <div className={styles.auth}>
         {user ? (
           <Link href="/account">
-            <a>{user.email}</a>
+            {/* <a>{user.email}</a> */}
+            <img src="/image_avatar.png" alt={user.email} />
           </Link>
         ) : (
           <Link href="/login">
