@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useContext, useState } from "react";
 import AuthContext from "../context/AuthContext";
 
-export const Login = () => {
+export default function Login() {
   const [email, setEmail] = useState("");
 
   const { loginUser } = useContext(AuthContext);
@@ -30,5 +30,4 @@ export const Login = () => {
       </form>
     </div>
   );
-};
-export default Login;
+}
