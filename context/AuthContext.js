@@ -46,8 +46,8 @@ export const AuthProvider = (props) => {
         setUser({ email });
 
         //Add this just for test
-        const token = await getToken()
-        console.log("checkUserLoggedIn token...", token)
+        const token = await getToken();
+        console.log("checkUserLoggedIn token...", token);
       }
     } catch (err) {}
   };
@@ -72,7 +72,7 @@ export const AuthProvider = (props) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, loginUser, logoutUser }}>
+    <AuthContext.Provider value={{ user, loginUser, logoutUser, getToken }}>
       {props.children}
     </AuthContext.Provider>
   );
