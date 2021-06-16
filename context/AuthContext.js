@@ -44,8 +44,25 @@ export const AuthProvider = (props) => {
       if (isLoggedIn) {
         const { email } = await magic.user.getMetadata();
         setUser({ email });
+
+        //Add this just for test
+        const token = await getToken();
+        console.log("checkUserLoggedIn token...", token);
       }
     } catch (err) {}
+  };
+
+  /**
+   * Retrieve Magic Issued Bearer Token
+   * This allows User to make authenticated requests
+   */
+  const getToken = async () => {
+    try {
+      const token = await magic.user.getIdToken();
+      return token;
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -55,7 +72,7 @@ export const AuthProvider = (props) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, loginUser, logoutUser }}>
+    <AuthContext.Provider value={{ user, loginUser, logoutUser, getToken }}>
       {props.children}
     </AuthContext.Provider>
   );
